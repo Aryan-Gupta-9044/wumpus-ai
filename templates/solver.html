@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wumpus World - AI Solver</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Wumpus World</h1>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Game</a></li>
+        <li><a href="{{ url_for('solver') }}">AI Solver</a></li>
+    </ul>
+
+    <h2>AI Solution Path</h2>
+    
+    <p>
+        The AI solver for Wumpus World uses knowledge-based reasoning to navigate the world safely.
+        It keeps track of what it knows and what it can infer based on its percepts.
+    </p>
+    
+    <h3>How the AI Reasons:</h3>
+    <ol>
+        <li>The AI maintains a knowledge base of what it knows about each cell in the grid.</li>
+        <li>When it perceives a breeze, it knows that at least one adjacent cell contains a pit.</li>
+        <li>When it perceives a stench, it knows that at least one adjacent cell contains the Wumpus.</li>
+        <li>As it explores, it updates its knowledge and infers which cells are safe to visit.</li>
+        <li>It uses a search algorithm to find an optimal path to the gold while avoiding dangers.</li>
+    </ol>
+    
+    <h3>Logical Reasoning Example:</h3>
+    <p>
+        If the AI is at position (1,1) and perceives no breeze and no stench, it can infer that:
+        <ul>
+            <li>All adjacent cells (0,1), (1,0), (1,2), (2,1) are safe from both pits and the Wumpus.</li>
+            <li>This information is added to the knowledge base.</li>
+            <li>The AI can now safely move to any of these cells without risk.</li>
+        </ul>
+    </p>
+    
+    <p>
+        If the AI then moves to (1,2) and perceives a breeze but no stench, it can infer that:
+        <ul>
+            <li>At least one of the adjacent cells (0,2), (1,3), (2,2) contains a pit.</li>
+            <li>It knows (1,1) is safe (it just came from there).</li>
+            <li>It will update its knowledge base with this information.</li>
+            <li>The AI will avoid unproven cells until it has more information.</li>
+        </ul>
+    </p>
+    
+    <p>
+        Through this logical reasoning process, the AI can navigate the Wumpus World safely
+        and efficiently to find the gold.
+    </p>
+    
+    <footer>
+        <p>&copy; 2023 Wumpus World AI Solver</p>
+    </footer>
+</body>
+</html> 
