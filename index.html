@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wumpus World</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Wumpus World</h1>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Game</a></li>
+        <li><a href="{{ url_for('solver') }}">AI Solver</a></li>
+    </ul>
+
+    <h2>Wumpus World Setup</h2>
+    <div>
+        <label for="gridSize">Grid Size:</label>
+        <select id="gridSize">
+            <option value="4">4x4</option>
+            <option value="5">5x5</option>
+            <option value="6">6x6</option>
+        </select>
+    </div>
+    <div>
+        <label for="wumpusPos">Wumpus Position (x,y):</label>
+        <input type="text" id="wumpusPos" value="2,1">
+    </div>
+    <div>
+        <label for="goldPos">Gold Position (x,y):</label>
+        <input type="text" id="goldPos" value="1,3">
+    </div>
+    <div>
+        <label for="pitPositions">Pit Positions (x1,y1,x2,y2,...):</label>
+        <input type="text" id="pitPositions" value="0,2,2,3">
+    </div>
+    
+    <p>Note: Coordinates start at (0,0) at the bottom-left corner.</p>
+    
+    <button id="startNewGame">Start New Game</button>
+    <button id="showAISolution">Show AI Solution</button>
+    
+    <div class="controls">
+        <button id="moveUp">↑</button>
+        <div>
+            <button id="moveLeft">←</button>
+            <button id="moveRight">→</button>
+        </div>
+        <button id="moveDown">↓</button>
+    </div>
+    
+    <div id="status">
+        <h2>Status</h2>
+        <p>Configure the world and start a new game.</p>
+        <p id="position">Position: -</p>
+        <p id="percepts">Percepts: -</p>
+        <p id="score">Score: 0</p>
+        <p id="gold">Gold: Not Found</p>
+    </div>
+    
+    <div id="aiSolutionPath">
+        <h2>AI Solution Path</h2>
+        <div id="solutionPath"></div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Wumpus World AI Solver</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='wumpus.js') }}"></script>
+</body>
+</html> 
